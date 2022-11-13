@@ -26,7 +26,8 @@ func init() {
 
 func main() {
 	flag.Parse()
-	convertJSONtoCSV(path)
+	convertJSONtoCSV(input_file_speackers)
+	// convertJSONtoCSV(path)
 	// records, err := readCsv(path)
 	// writeToJson(records)
 	// fmt.Print(err)

@@ -30,13 +30,14 @@ func convertSessions(source_file *os.File) {
 
 	writer, output := createFile(session_csv_output)
 
-	defer output.Close()
-
 	if err := writer.Write(session_headers); err != nil {
 		Check(err)
 	}
 
+	defer output.Close()
+
 	for id, s := range sessions {
+		defer writer.Flush()
 		tag := strings.Join(s.Tags, ";")
 		speaker := strings.Join(s.Speakers, ";")
 		var csv_row []string
@@ -64,6 +65,7 @@ func convertSpeakers(source_file *os.File) {
 	}
 
 	for name, s := range speakers {
+		defer writer.Flush()
 		var socials []string
 		var badges []string
 		for _, social := range s.Socials {
