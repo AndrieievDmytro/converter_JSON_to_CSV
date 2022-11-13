@@ -17,7 +17,6 @@ func createFile(file string) (*csv.Writer, *os.File) {
 	}
 	//  Write the header of the CSV file and the successive rows by iterating through the JSON struct array
 	writer := csv.NewWriter(output_file)
-	defer writer.Flush()
 	return writer, output_file
 }
 
@@ -89,6 +88,7 @@ func convertSchedule(source_file *os.File) {
 	schedule_csv_ouput := "output/schedule_converted.csv"
 
 	var schedules map[string]Schedule
+	// Read the JSON file into the struct array
 	if err := json.NewDecoder(source_file).Decode(&schedules); err != nil {
 		Check(err)
 	}
@@ -111,7 +111,6 @@ func convertSchedule(source_file *os.File) {
 		if err := writer.Write(csv_row); err != nil {
 			Check(err)
 		}
-		// csv_row = nil
 		for i, timeslot := range s.Timeslots {
 			var sessions []string
 			defer writer.Flush()
@@ -134,20 +133,18 @@ func convertJSONtoCSV(paths []string) {
 	input_file_speackers := "input/speakers_test.json"
 	input_file_schedule := "input/schedule_test.json"
 	for _, path := range paths {
-		// Read the JSON file into the struct array
 		source_file, err := os.Open(path)
 		Check(err)
 		defer source_file.Close()
 
 		if strings.Contains(path, input_file_session) {
 			convertSessions(source_file)
-			// return err
 		} else if strings.Contains(path, input_file_speackers) {
 			convertSpeakers(source_file)
 		} else if strings.Contains(path, input_file_schedule) {
 			convertSchedule(source_file)
 		} else {
-			fmt.Print("Provided parameter does not contain right file name path")
+			fmt.Print("Provided \"input_file_*\" parameter in func convertJSONtoCSV() does not contain right file path")
 		}
 	}
 }
