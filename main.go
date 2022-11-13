@@ -1,9 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 var (
-	paths = []string{"input/sessions_test.json", "input/speakers_test.json", "input/schedule_test.json"}
+	input_file_session   = "input/sessions.json"
+	input_file_speackers = "input/speakers.json"
+	input_file_schedule  = "input/schedule.json"
+	operation_type       string
+	path                 string
 )
 
 func Check(e error) {
@@ -12,8 +19,14 @@ func Check(e error) {
 	}
 }
 
+func init() {
+	flag.StringVar(&operation_type, "t", operation_type, "Type of a file to convert.")
+	flag.StringVar(&path, "p", path, "Path to file. Format : input/file_name.json/csv")
+}
+
 func main() {
-	convertJSONtoCSV(paths)
+	flag.Parse()
+	convertJSONtoCSV(path)
 	// records, err := readCsv(path)
 	// writeToJson(records)
 	// fmt.Print(err)

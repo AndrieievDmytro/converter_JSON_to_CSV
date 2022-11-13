@@ -8,10 +8,6 @@ import (
 	"strings"
 )
 
-var (
-	path = "sessions_test_csv.csv"
-)
-
 func readCsv(path string) ([][]string, error) {
 	var dataFile *os.File
 	var err error

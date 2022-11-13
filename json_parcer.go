@@ -128,23 +128,18 @@ func convertSchedule(source_file *os.File) {
 	}
 }
 
-func convertJSONtoCSV(paths []string) {
-	input_file_session := "input/sessions_test.json"
-	input_file_speackers := "input/speakers_test.json"
-	input_file_schedule := "input/schedule_test.json"
-	for _, path := range paths {
-		source_file, err := os.Open(path)
-		Check(err)
-		defer source_file.Close()
+func convertJSONtoCSV(path string) {
+	source_file, err := os.Open(path)
+	Check(err)
+	defer source_file.Close()
 
-		if strings.Contains(path, input_file_session) {
-			convertSessions(source_file)
-		} else if strings.Contains(path, input_file_speackers) {
-			convertSpeakers(source_file)
-		} else if strings.Contains(path, input_file_schedule) {
-			convertSchedule(source_file)
-		} else {
-			fmt.Print("Provided \"input_file_*\" parameter in func convertJSONtoCSV() does not contain right file path")
-		}
+	if strings.Contains(path, input_file_session) {
+		convertSessions(source_file)
+	} else if strings.Contains(path, input_file_speackers) {
+		convertSpeakers(source_file)
+	} else if strings.Contains(path, input_file_schedule) {
+		convertSchedule(source_file)
+	} else {
+		fmt.Print("Provided input_file_* parameter in func convertJSONtoCSV() does not contain right file path")
 	}
 }
