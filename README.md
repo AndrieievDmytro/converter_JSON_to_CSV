@@ -11,6 +11,6 @@ In order to run program use command line with the next arguments :
 
 -t string
 
-        Type of a file to convert.
+        Type of a file to convert(json/csv). 
         
         Example: .\parcer -t json -p input/sessions.json
