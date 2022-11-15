@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"unicode"
 )
 
 var (
@@ -19,6 +20,13 @@ func Check(e error) {
 	}
 }
 
+func IsUpper(r rune) bool {
+	if !unicode.IsUpper(r) && unicode.IsLetter(r) {
+		return false
+	}
+	return true
+}
+
 func init() {
 	flag.StringVar(&operation_type, "t", operation_type, "Type of a file to convert.")
 	flag.StringVar(&path, "p", path, "Path to file. Format : input/file_name.json/csv")
@@ -26,9 +34,10 @@ func init() {
 
 func main() {
 	flag.Parse()
-	convertJSONtoCSV(path)
-	// convertJSONtoCSV(path)
-	// records, err := readCsv(path)
-	// writeToJson(records)
-	// fmt.Print(err)
+	switch operation_type {
+	case "csv":
+		convertCSVtoJSON(path)
+	case "json":
+		convertJSONtoCSV(path)
+	}
 }

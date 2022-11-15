@@ -135,13 +135,24 @@ func convertJSONtoCSV(path string) {
 	Check(err)
 	defer source_file.Close()
 
-	if strings.Contains(path, input_file_session) {
+	switch path {
+	case input_file_session:
 		convertSessions(source_file)
-	} else if strings.Contains(path, input_file_speackers) {
-		convertSpeakers(source_file)
-	} else if strings.Contains(path, input_file_schedule) {
+	case input_file_schedule:
 		convertSchedule(source_file)
-	} else {
+	case input_file_speackers:
+		convertSpeakers(source_file)
+	default:
 		fmt.Print("Provided input_file_* parameter in func convertJSONtoCSV() does not contain right file path")
 	}
+
+	// if path ==  {
+
+	// } else if path ==  {
+
+	// } else if path ==  {
+
+	// } else {
+
+	// }
 }
