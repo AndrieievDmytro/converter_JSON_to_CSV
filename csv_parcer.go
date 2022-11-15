@@ -150,13 +150,13 @@ func convertCSVtoJSON(path string) {
 	records, err0 := readCsv(path)
 	Check(err0)
 	if strings.Contains(path, "input/speakers.csv") {
-		f, err1 := os.Create("output/speakers.json")
+		f, err1 := os.Create("output/speakers_converted.json")
 		Check(err1)
 		defer f.Close()
 		_, err2 := f.WriteString(convertSpeakersToJSON(records))
 		Check(err2)
 	} else if strings.Contains(path, "input/sessions.csv") {
-		f, err1 := os.Create("output/sessions.json")
+		f, err1 := os.Create("output/sessions_converted.json")
 		Check(err1)
 		defer f.Close()
 		_, err2 := f.WriteString(convertSessionsToJSON(records))
