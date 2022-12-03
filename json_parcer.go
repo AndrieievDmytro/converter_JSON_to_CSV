@@ -140,7 +140,7 @@ func convertJSONtoCSV(path string) {
 		convertSessions(source_file)
 	case "schedule":
 		convertSchedule(source_file)
-	case "speackers":
+	case "speakers":
 		convertSpeakers(source_file)
 	default:
 		fmt.Print("Provided file_name in func convertJSONtoCSV() does not contain right file path")
