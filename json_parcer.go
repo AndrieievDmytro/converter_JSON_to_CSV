@@ -135,14 +135,14 @@ func convertJSONtoCSV(path string) {
 	Check(err)
 	defer source_file.Close()
 
-	switch path {
-	case input_file_session:
+	switch file_name {
+	case "sessions":
 		convertSessions(source_file)
-	case input_file_schedule:
+	case "schedule":
 		convertSchedule(source_file)
-	case input_file_speackers:
+	case "speackers":
 		convertSpeakers(source_file)
 	default:
-		fmt.Print("Provided input_file_* parameter in func convertJSONtoCSV() does not contain right file path")
+		fmt.Print("Provided file_name in func convertJSONtoCSV() does not contain right file path")
 	}
 }

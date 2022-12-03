@@ -7,12 +7,9 @@ import (
 )
 
 var (
-	input_file_session   = "input/sessions.json"
-	input_file_speackers = "input/speakers.json"
-	input_file_schedule  = "input/schedule.json"
-	operation_type       string
-	path                 string
-	file_name            string
+	operation_type string
+	path           string
+	file_name      string
 )
 
 func Check(e error) {
@@ -35,8 +32,6 @@ func init() {
 }
 
 func main() {
-	// convertCSVtoJSON("input/speakers.csv")
-	// convertJSONtoCSV("input/schedule.json")
 	flag.Parse()
 	switch operation_type {
 	case "csv":
