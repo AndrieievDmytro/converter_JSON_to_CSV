@@ -12,6 +12,7 @@ var (
 	input_file_schedule  = "input/schedule.json"
 	operation_type       string
 	path                 string
+	file_name            string
 )
 
 func Check(e error) {
@@ -30,9 +31,12 @@ func IsUpper(r rune) bool {
 func init() {
 	flag.StringVar(&operation_type, "t", operation_type, "Type of a file to convert.")
 	flag.StringVar(&path, "p", path, "Path to file. Format : input/file_name.json/csv")
+	flag.StringVar(&file_name, "f", file_name, "Name of a file to convert.")
 }
 
 func main() {
+	// convertCSVtoJSON("input/speakers.csv")
+	// convertJSONtoCSV("input/schedule.json")
 	flag.Parse()
 	switch operation_type {
 	case "csv":

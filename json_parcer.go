@@ -145,14 +145,4 @@ func convertJSONtoCSV(path string) {
 	default:
 		fmt.Print("Provided input_file_* parameter in func convertJSONtoCSV() does not contain right file path")
 	}
-
-	// if path ==  {
-
-	// } else if path ==  {
-
-	// } else if path ==  {
-
-	// } else {
-
-	// }
 }
